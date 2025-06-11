@@ -1,4 +1,5 @@
 
+
 import { Filter, Edit, LayoutGrid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -31,6 +32,13 @@ const TopNavigation = () => {
             <button className="text-white hover:text-slate-300">
               Tab
             </button>
+            
+            <button className="relative text-white hover:text-slate-300 px-3 py-1 rounded-md overflow-hidden">
+              <span className="relative z-10">Re-organise</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-blue-400/30 to-blue-500/20 animate-pulse"></div>
+              <div className="absolute inset-0 bg-blue-500/10 animate-ping"></div>
+              <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-blue-400/60 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-bounce"></div>
+            </button>
           </div>
         </div>
 
@@ -62,3 +70,4 @@ const TopNavigation = () => {
 };
 
 export default TopNavigation;
+
