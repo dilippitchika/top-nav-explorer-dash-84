@@ -8,15 +8,16 @@ import { useState } from 'react';
 interface ReorganiseModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onReorganise: () => void;
 }
 
-const ReorganiseModal = ({ open, onOpenChange }: ReorganiseModalProps) => {
+const ReorganiseModal = ({ open, onOpenChange, onReorganise }: ReorganiseModalProps) => {
   const [reorganiseScope, setReorganiseScope] = useState('only-tab');
   const [includeSummary, setIncludeSummary] = useState('yes');
 
   const handleReorganise = () => {
     console.log('Reorganising with scope:', reorganiseScope, 'Include summary:', includeSummary);
-    onOpenChange(false);
+    onReorganise();
   };
 
   const handleCancel = () => {
