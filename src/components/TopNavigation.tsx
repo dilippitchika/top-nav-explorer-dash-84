@@ -1,9 +1,16 @@
 
-
 import { Filter, Edit, LayoutGrid, Wand } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ReorganiseModal from './ReorganiseModal';
+import { useState } from 'react';
 
 const TopNavigation = () => {
+  const [isReorganiseModalOpen, setIsReorganiseModalOpen] = useState(false);
+
+  const handleReorganiseClick = () => {
+    setIsReorganiseModalOpen(true);
+  };
+
   return (
     <div className="bg-slate-800 text-white">
       {/* Top bar with main navigation */}
@@ -33,7 +40,10 @@ const TopNavigation = () => {
               Tab
             </button>
             
-            <button className="flex items-center space-x-2 text-white hover:text-white/90 px-3 py-1 rounded-md bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 transition-all">
+            <button 
+              onClick={handleReorganiseClick}
+              className="flex items-center space-x-2 text-white hover:text-white/90 px-3 py-1 rounded-md bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 transition-all"
+            >
               <Wand className="h-4 w-4" />
               <span>Re-organise</span>
             </button>
@@ -63,9 +73,13 @@ const TopNavigation = () => {
           <LayoutGrid className="h-4 w-4" />
         </button>
       </div>
+
+      <ReorganiseModal 
+        open={isReorganiseModalOpen} 
+        onOpenChange={setIsReorganiseModalOpen} 
+      />
     </div>
   );
 };
 
 export default TopNavigation;
-
