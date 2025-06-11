@@ -8,11 +8,12 @@ interface KPICardProps {
   change?: string;
   changeColor?: 'green' | 'red';
   className?: string;
+  height?: string;
 }
 
-const KPICard = ({ title, value, subtitle, change, changeColor, className }: KPICardProps) => {
+const KPICard = ({ title, value, subtitle, change, changeColor, className, height }: KPICardProps) => {
   return (
-    <Card className={`hover:shadow-md transition-shadow ${className}`}>
+    <Card className={`hover:shadow-md transition-shadow ${className}`} style={height ? { height } : undefined}>
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
       </CardHeader>

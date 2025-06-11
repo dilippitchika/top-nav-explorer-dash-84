@@ -40,39 +40,57 @@ const Index = () => {
       <TopNavigation />
       
       <div className="p-6">
-        {/* Top row of KPI cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <LineChartCard
-            title="Total Pipeline Value"
-            value="US$27.05M"
-            change="↑ 9.02% vs Week of 12/10/1998 (US$14.94M)"
-            changeColor="green"
-            data={lineData1}
-            color="#3B82F6"
-          />
-          
-          <LineChartCard
-            title="CFY"
-            value="US$72.94M"
-            change="↓ 69.35% vs Sept 1998 (US$237.98M)"
-            changeColor="red"
-            data={lineData2}
-            color="#06B6D4"
-          />
-          
-          <KPICard
-            title="Total Pipeline Value"
-            value="US$27.05M"
-          />
-          
-          <KPICard
-            title="Qualified Pipeline"
-            value="US$643.49K"
-          />
+        {/* Main container with two groups side by side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          {/* Left group: Line charts side by side */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <LineChartCard
+              title="Total Pipeline Value"
+              value="US$27.05M"
+              change="↑ 9.02% vs Week of 12/10/1998 (US$14.94M)"
+              changeColor="green"
+              data={lineData1}
+              color="#3B82F6"
+            />
+            
+            <LineChartCard
+              title="CFY"
+              value="US$72.94M"
+              change="↓ 69.35% vs Sept 1998 (US$237.98M)"
+              changeColor="red"
+              data={lineData2}
+              color="#06B6D4"
+            />
+          </div>
+
+          {/* Right group: KPI cards in 2x2 grid */}
+          <div className="grid grid-cols-2 gap-4">
+            <KPICard
+              title="Total Pipeline Value"
+              value="US$27.05M"
+              height="120px"
+            />
+            
+            <KPICard
+              title="Qualified Pipeline"
+              value="US$643.49K"
+              height="120px"
+            />
+            
+            <KPICard
+              title="Pipeline Value"
+              value="US$72.94M"
+            />
+            
+            <KPICard
+              title="Commit to book ratio"
+              value="19.05"
+            />
+          </div>
         </div>
 
-        {/* Second row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        {/* Bottom row: Donut and bar charts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <DonutChartCard
             title="Revenue breakdown"
             data={revenueData}
@@ -83,35 +101,19 @@ const Index = () => {
             data={pipelineData}
           />
           
-          <div>
-            <KPICard
-              title="Pipeline Value"
-              value="US$72.94M"
-              className="mb-4"
-            />
-            
-            <BarChartCard
-              title="Pipeline distribution"
-              data={[
-                { name: 'Category', mfgr14: 80, mfgr15: 0, mfgr21: 0 }
-              ]}
-              colors={['#8B5CF6', '#06B6D4', '#F59E0B']}
-            />
-          </div>
+          <BarChartCard
+            title="Pipeline distribution"
+            data={[
+              { name: 'Category', mfgr14: 80, mfgr15: 0, mfgr21: 0 }
+            ]}
+            colors={['#8B5CF6', '#06B6D4', '#F59E0B']}
+          />
           
-          <div>
-            <KPICard
-              title="Commit to book ratio"
-              value="19.05"
-              className="mb-4"
-            />
-            
-            <BarChartCard
-              title="Pipeline distribution"
-              data={barData}
-              colors={['#F59E0B', '#06B6D4', '#8B5CF6']}
-            />
-          </div>
+          <BarChartCard
+            title="Pipeline distribution"
+            data={barData}
+            colors={['#F59E0B', '#06B6D4', '#8B5CF6']}
+          />
         </div>
       </div>
     </div>
