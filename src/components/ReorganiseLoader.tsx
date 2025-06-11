@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -57,18 +56,7 @@ const ReorganiseLoader = ({ onComplete }: ReorganiseLoaderProps) => {
                       : 'bg-muted text-muted-foreground'
                   }`}
                 >
-                  <div className="flex items-center space-x-2">
-                    {index < currentStep && (
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    )}
-                    {index === currentStep && (
-                      <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
-                    )}
-                    {index > currentStep && (
-                      <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    )}
-                    <span>{step}</span>
-                  </div>
+                  <span>{step}</span>
                 </div>
               ))}
             </div>

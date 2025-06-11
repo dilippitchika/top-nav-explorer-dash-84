@@ -1,13 +1,17 @@
-
 import { Filter, Edit, LayoutGrid, Wand } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ReorganiseModal from './ReorganiseModal';
 import ReorganiseLoader from './ReorganiseLoader';
 import { useState } from 'react';
 
-const TopNavigation = () => {
+interface TopNavigationProps {
+  onShowGroupedLiveboard?: () => void;
+}
+
+const TopNavigation = ({ onShowGroupedLiveboard }: TopNavigationProps) => {
   const [isReorganiseModalOpen, setIsReorganiseModalOpen] = useState(false);
   const [isReorganising, setIsReorganising] = useState(false);
+  const [heading] = useState('Business overview [Dilip]');
 
   const handleReorganiseClick = () => {
     setIsReorganiseModalOpen(true);
@@ -20,6 +24,7 @@ const TopNavigation = () => {
 
   const handleReorganiseComplete = () => {
     setIsReorganising(false);
+    if (onShowGroupedLiveboard) onShowGroupedLiveboard();
     console.log('Reorganisation complete - showing new Liveboard');
   };
 
@@ -77,7 +82,7 @@ const TopNavigation = () => {
         {/* Bottom section with title and show panel */}
         <div className="flex items-center justify-between px-6 py-3 bg-white text-slate-900">
           <div className="flex items-center space-x-2">
-            <span className="text-lg font-medium">Business overview [Dilip]</span>
+            <span className="text-lg font-medium">{heading}</span>
             <Edit className="h-4 w-4 text-slate-500" />
           </div>
           
