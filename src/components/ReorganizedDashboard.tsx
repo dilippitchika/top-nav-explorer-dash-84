@@ -1,3 +1,4 @@
+
 import KPICard from '@/components/KPICard';
 import LineChartCard from '@/components/LineChartCard';
 import DonutChartCard from '@/components/DonutChartCard';
@@ -35,51 +36,56 @@ const barData = [
 const ReorganizedDashboard = () => {
   return (
     <div className="p-6 space-y-6">
-      {/* Pipeline trends group - 2 columns */}
+      {/* Group 1 and Group 2 side by side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <LineChartCard
-          title="Total Pipeline Value"
-          value="US$27.05M"
-          change="↑ 9.02% vs Week of 12/10/1998 (US$14.94M)"
-          changeColor="green"
-          data={lineData1}
-          color="#3B82F6"
-        />
-        
-        <LineChartCard
-          title="CFY"
-          value="US$72.94M"
-          change="↓ 69.35% vs Sept 1998 (US$237.98M)"
-          changeColor="red"
-          data={lineData2}
-          color="#06B6D4"
-        />
+        {/* Group 1: Pipeline trends container */}
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 gap-4">
+            <LineChartCard
+              title="Total Pipeline Value"
+              value="US$27.05M"
+              change="↑ 9.02% vs Week of 12/10/1998 (US$14.94M)"
+              changeColor="green"
+              data={lineData1}
+              color="#3B82F6"
+            />
+            
+            <LineChartCard
+              title="CFY"
+              value="US$72.94M"
+              change="↓ 69.35% vs Sept 1998 (US$237.98M)"
+              changeColor="red"
+              data={lineData2}
+              color="#06B6D4"
+            />
+          </div>
+        </div>
+
+        {/* Group 2: KPI metrics container - 2x2 grid */}
+        <div className="grid grid-cols-2 gap-4">
+          <KPICard
+            title="Total Pipeline Value"
+            value="US$27.05M"
+          />
+          
+          <KPICard
+            title="Qualified Pipeline"
+            value="US$643.49K"
+          />
+          
+          <KPICard
+            title="Pipeline Value"
+            value="US$72.94M"
+          />
+          
+          <KPICard
+            title="Commit to book ratio"
+            value="19.05"
+          />
+        </div>
       </div>
 
-      {/* Key Metrics group - 4 columns */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <KPICard
-          title="Total Pipeline Value"
-          value="US$27.05M"
-        />
-        
-        <KPICard
-          title="Qualified Pipeline"
-          value="US$643.49K"
-        />
-        
-        <KPICard
-          title="Pipeline Value"
-          value="US$72.94M"
-        />
-        
-        <KPICard
-          title="Commit to book ratio"
-          value="19.05"
-        />
-      </div>
-
-      {/* Pipeline breakdown group - 4 columns */}
+      {/* Group 3: Remaining visualizations in a single row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <DonutChartCard
           title="Revenue breakdown"
