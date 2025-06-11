@@ -1,11 +1,14 @@
-
 import { Filter, Edit, LayoutGrid, Wand } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ReorganiseModal from './ReorganiseModal';
 import ReorganiseLoader from './ReorganiseLoader';
 import { useState } from 'react';
 
-const TopNavigation = () => {
+interface TopNavigationProps {
+  onReorganizationComplete?: () => void;
+}
+
+const TopNavigation = ({ onReorganizationComplete }: TopNavigationProps) => {
   const [isReorganiseModalOpen, setIsReorganiseModalOpen] = useState(false);
   const [isReorganising, setIsReorganising] = useState(false);
 
@@ -21,6 +24,9 @@ const TopNavigation = () => {
   const handleReorganiseComplete = () => {
     setIsReorganising(false);
     console.log('Reorganisation complete - showing new Liveboard');
+    if (onReorganizationComplete) {
+      onReorganizationComplete();
+    }
   };
 
   return (

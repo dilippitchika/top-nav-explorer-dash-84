@@ -4,6 +4,8 @@ import KPICard from '@/components/KPICard';
 import LineChartCard from '@/components/LineChartCard';
 import DonutChartCard from '@/components/DonutChartCard';
 import BarChartCard from '@/components/BarChartCard';
+import ReorganizedDashboard from '@/components/ReorganizedDashboard';
+import { useState } from 'react';
 
 // Sample data for charts
 const lineData1 = Array.from({ length: 30 }, (_, i) => ({
@@ -35,85 +37,95 @@ const barData = [
 ];
 
 const Index = () => {
+  const [isReorganized, setIsReorganized] = useState(false);
+
+  const handleReorganizationComplete = () => {
+    setIsReorganized(true);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50">
-      <TopNavigation />
+      <TopNavigation onReorganizationComplete={handleReorganizationComplete} />
       
-      <div className="p-6">
-        {/* Top row of KPI cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <LineChartCard
-            title="Total Pipeline Value"
-            value="US$27.05M"
-            change="↑ 9.02% vs Week of 12/10/1998 (US$14.94M)"
-            changeColor="green"
-            data={lineData1}
-            color="#3B82F6"
-          />
-          
-          <LineChartCard
-            title="CFY"
-            value="US$72.94M"
-            change="↓ 69.35% vs Sept 1998 (US$237.98M)"
-            changeColor="red"
-            data={lineData2}
-            color="#06B6D4"
-          />
-          
-          <KPICard
-            title="Total Pipeline Value"
-            value="US$27.05M"
-          />
-          
-          <KPICard
-            title="Qualified Pipeline"
-            value="US$643.49K"
-          />
-        </div>
-
-        {/* Second row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <DonutChartCard
-            title="Revenue breakdown"
-            data={revenueData}
-          />
-          
-          <DonutChartCard
-            title="Pipeline distribution"
-            data={pipelineData}
-          />
-          
-          <div>
-            <KPICard
-              title="Pipeline Value"
+      {isReorganized ? (
+        <ReorganizedDashboard />
+      ) : (
+        <div className="p-6">
+          {/* Top row of KPI cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <LineChartCard
+              title="Total Pipeline Value"
+              value="US$27.05M"
+              change="↑ 9.02% vs Week of 12/10/1998 (US$14.94M)"
+              changeColor="green"
+              data={lineData1}
+              color="#3B82F6"
+            />
+            
+            <LineChartCard
+              title="CFY"
               value="US$72.94M"
-              className="mb-4"
+              change="↓ 69.35% vs Sept 1998 (US$237.98M)"
+              changeColor="red"
+              data={lineData2}
+              color="#06B6D4"
             />
             
-            <BarChartCard
-              title="Pipeline distribution"
-              data={[
-                { name: 'Category', mfgr14: 80, mfgr15: 0, mfgr21: 0 }
-              ]}
-              colors={['#8B5CF6', '#06B6D4', '#F59E0B']}
+            <KPICard
+              title="Total Pipeline Value"
+              value="US$27.05M"
+            />
+            
+            <KPICard
+              title="Qualified Pipeline"
+              value="US$643.49K"
             />
           </div>
-          
-          <div>
-            <KPICard
-              title="Commit to book ratio"
-              value="19.05"
-              className="mb-4"
+
+          {/* Second row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <DonutChartCard
+              title="Revenue breakdown"
+              data={revenueData}
             />
             
-            <BarChartCard
+            <DonutChartCard
               title="Pipeline distribution"
-              data={barData}
-              colors={['#F59E0B', '#06B6D4', '#8B5CF6']}
+              data={pipelineData}
             />
+            
+            <div>
+              <KPICard
+                title="Pipeline Value"
+                value="US$72.94M"
+                className="mb-4"
+              />
+              
+              <BarChartCard
+                title="Pipeline distribution"
+                data={[
+                  { name: 'Category', mfgr14: 80, mfgr15: 0, mfgr21: 0 }
+                ]}
+                colors={['#8B5CF6', '#06B6D4', '#F59E0B']}
+              />
+            </div>
+            
+            <div>
+              <KPICard
+                title="Commit to book ratio"
+                value="19.05"
+                className="mb-4"
+              />
+              
+              <BarChartCard
+                title="Pipeline distribution"
+                data={barData}
+                colors={['#F59E0B', '#06B6D4', '#8B5CF6']}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
