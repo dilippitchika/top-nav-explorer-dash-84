@@ -58,7 +58,7 @@ const Index = () => {
                     changeColor="green"
                     data={lineData1}
                     color="#3B82F6"
-                    chartHeight="70px"
+                    chartHeight="60px"
                   />
                   <LineChartCard
                     title="CFY"
@@ -67,7 +67,7 @@ const Index = () => {
                     changeColor="red"
                     data={lineData2}
                     color="#06B6D4"
-                    chartHeight="70px"
+                    chartHeight="60px"
                   />
                 </div>
               </div>
